@@ -10,12 +10,11 @@ int check_cycle(listint_t *list)
 	listint_t *check;
 
 	check = list;
-	check = check->next;
-	while (check != list)
+	while (check)
 	{
 		check = check->next;
-		if (check->next == NULL)
-			return (0);
+		if (check == list)
+			return (1);
 	}
-	return (1);
+	return (0);
 }
