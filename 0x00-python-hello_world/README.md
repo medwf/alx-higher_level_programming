@@ -18,3 +18,4 @@
 3.  print the integer stored in the variable number, followed by Battery street, followed by a new line.
 4. Complete the source code in order to print the float stored in the variable number with a precision of 2 digits.
 5. print 3 times a string stored in the variable str, followed by its first 9 characters.
+6. print Welcome to Holberton School! 
