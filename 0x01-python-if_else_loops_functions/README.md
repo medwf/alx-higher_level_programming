@@ -37,3 +37,4 @@ What are the arithmetic operators and how to use them
 7. Write a function that checks for lowercase character.
 8. Write a function that prints a string in uppercase followed by a new line.
 9. Write a function that prints the last digit of a number.
+10. Write a function that adds two integers and returns the result.
