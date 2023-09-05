@@ -39,3 +39,4 @@ What are the arithmetic operators and how to use them
 9. Write a function that prints the last digit of a number.
 10. Write a function that adds two integers and returns the result.
 11. Write a function that computes a to the power of b and return the value.
+12. Write a function that prints the numbers from 1 to 100 separated by a space.
