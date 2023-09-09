@@ -8,11 +8,12 @@
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *check = *head;
+	listint_t *check = NULL;
 	int i = 0, len = 0, first = 0, second = 0;
 
-	if (!*head || !(*head)->next)
+	if (!*head)
 		return (1);
+	check = *head;
 	while (check)
 		check = check->next, len++;
 	check = *head;
