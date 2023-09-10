@@ -8,15 +8,15 @@
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *helper = *head, *first_node = *head, *last_node = *head;
+	listint_t *first_node = *head, *last_node = *head;
 	int len = 0, last;
 
 	if (!*head)
 		return (1);
-	while (helper)
-		helper = helper->next, len++;
+	while (first_node)
+		first_node = first_node->next, len++;
 
-	/* printf("len = %d\n", len);*/
+	first_node = *head;
 	while (first_node)
 	{
 		for (last = 1; last < len; last++)
