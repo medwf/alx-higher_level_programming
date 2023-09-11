@@ -18,12 +18,13 @@ int is_palindrome(listint_t **head)
 		first_node = first_node->next, len++;
 
 	first_node = *head;
-	for (first = 1; first <= ((len % 2 == 0)
-				? (len / 2) : (len / 2) + 1); first++)
+	for (first = 1; first <= ((len % 2 == 0) ? (len / 2)
+				: (len / 2) + 1);
+			first++)
 	{
 		for (last = first; last <= len - first; last++)
 			last_node = last_node->next;
-		printf("fist = %d -- second = %d\n", first_node->n, last_node->n);
+		/*printf("fist = %d -- second = %d\n", first_node->n, last_node->n);*/
 		if (first_node->n != last_node->n)
 			return (0);
 		first_node = first_node->next, last_node = first_node;
