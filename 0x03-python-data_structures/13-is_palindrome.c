@@ -8,26 +8,22 @@
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *first_node = *head, *last_node = *head;
-	int len = 0, first = 0, last = 0;
+	listint_t *helper = *head;
+	int array[1024], start, end;
 
 	if (!*head)
 		return (1);
 
-	while (first_node)
-		first_node = first_node->next, len++;
+	for (end = 0; helper; end++)
+		array[end] = helper->n, helper = helper->next;
 
-	first_node = *head;
-	for (first = 1; first <= ((len % 2 == 0) ? (len / 2)
-				: (len / 2) + 1);
-			first++)
+	array[end] = '\0';
+	for (start = 0; start < ((end % 2 == 0) ? (end / 2)
+				: (end / 2) + 1); start++)
 	{
-		for (last = first; last <= len - first; last++)
-			last_node = last_node->next;
-		/*printf("fist = %d -- second = %d\n", first_node->n, last_node->n);*/
-		if (first_node->n != last_node->n)
+		if (array[start] != array[end - start - 1])
 			return (0);
-		first_node = first_node->next, last_node = first_node;
+		/*printf("start = %d - end = %d\n", array[start],array[end- start - 1]);*/
 	}
 	return (1);
 }
