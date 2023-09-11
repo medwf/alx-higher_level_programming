@@ -19,12 +19,10 @@ int is_palindrome(listint_t **head)
 	first_node = *head, len2 = len;
 	if (len % 2 != 0)
 		len2 = len + 1;
-	/*printf("len ====> %d, len2 ====> %d\n", len, len2);*/
 	for (first = 1; first <= (len2 / 2); first++)
 	{
 		for (last = first; last <= len - first; last++)
 			last_node = last_node->next;
-		/*printf("fist = %d -- second = %d\n", first_node->n, last_node->n);*/
 		if (first_node->n != last_node->n)
 			return (0);
 		first_node = first_node->next, last_node = first_node;
