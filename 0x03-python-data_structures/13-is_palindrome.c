@@ -9,17 +9,16 @@
 int is_palindrome(listint_t **head)
 {
 	listint_t *first_node = *head, *last_node = *head;
-	int len = 0, len2 = 0, first, last;
+	int len = 0, first, last;
 
 	if (!*head)
 		return (1);
+
 	while (first_node)
 		first_node = first_node->next, len++;
 
-	first_node = *head, len2 = len;
-	if (len % 2 != 0)
-		len2 = len + 1;
-	for (first = 1; first <= (len2 / 2); first++)
+	first_node = *head;
+	for (first = 1; first <= len; first++)
 	{
 		for (last = first; last <= len - first; last++)
 			last_node = last_node->next;
