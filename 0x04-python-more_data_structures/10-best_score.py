@@ -6,6 +6,6 @@ def best_score(a_dictionary):
             if big < i:
                 big, key = i, k
         return key
-    return None
+
 
 
