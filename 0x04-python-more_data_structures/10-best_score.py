@@ -7,4 +7,5 @@ def best_score(a_dictionary):
                 big, key = i, k
                 # print(big, key)
         return key
+    return None
 
