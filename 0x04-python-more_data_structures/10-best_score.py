@@ -5,5 +5,6 @@ def best_score(a_dictionary):
         for k, i in a_dictionary.items():
             if big < i:
                 big, key = i, k
-                print(big, key)
+                # print(big, key)
         return key
+
