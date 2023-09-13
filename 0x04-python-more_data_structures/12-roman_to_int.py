@@ -2,7 +2,7 @@
 def roman_to_int(roman_string):
     number = 0
     array = []
-    if roman_string is not None and len(roman_string) != 0:
+    if roman_string is not None and isinstance(roman_string, str):
         roman = {
             "M": 1000,
             "D": 500,
