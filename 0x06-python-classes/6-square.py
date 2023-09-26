@@ -67,6 +67,7 @@ class Square:
         """Class Methode my_print: to print an square of # """
         if self._Square__size == 0:
             print()
+            return
         for char in range(self._Square__pos[1]):
             print()
         for char in range(self._Square__size):
