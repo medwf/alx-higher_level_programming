@@ -19,12 +19,7 @@ class Node:
 
     @property
     def data(self):
-        """
-        Retrieve the data of The Node
-
-        Returns:
-            int: The data of the node.
-        """
+        """Get or set the data value of a node."""
         return self._data
 
     @data.setter
