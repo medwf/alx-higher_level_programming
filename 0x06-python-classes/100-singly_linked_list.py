@@ -41,7 +41,7 @@ class Node:
 
 
 class SinglyLinkedList:
-    """This class allows you to create and manipulate SinglyLinkedList objects."""
+    """Defines a singly linked list"""
 
     def __init__(self):
         """Initialize a new SinglyLinkedList."""
@@ -57,16 +57,15 @@ class SinglyLinkedList:
             new_node.next_node = self.head
             self.head = new_node
             return
-
         current = self.head
         while current.next_node is not None and current.next_node.data < value:
             current = current.next_node
-
         new_node.next_node = current.next_node
         current.next_node = new_node
 
     def __str__(self):
-        """method that prints the entire list in stdout, one node number by line."""
+        """method that prints the entire list in stdout,
+            one node number by line."""
         node = self.head
         nodes = []
         while node is not None:
