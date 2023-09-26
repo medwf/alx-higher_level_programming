@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-"""This is class Node"""
+"""Singly Linked Lists module.
+This module contains methods about the creation and hendling of
+SinglyLinkedList and Node objects.
+"""
 
 
 class Node:
@@ -63,9 +66,6 @@ class Node:
         if value is not None and not isinstance(value, Node):
             raise TypeError("next_node must be a Node object")
         self._next_node = value
-
-
-"""This is class SinglyLinkedList"""
 
 
 class SinglyLinkedList:
