@@ -26,10 +26,8 @@ class Node:
     def data(self, value):
         """
         Set The data of the Node.
-
         Args:
             value (int): The integer of the node.
-
         Raises:
             TypeError: data must be an integer
         """
@@ -41,7 +39,6 @@ class Node:
     def next_node(self):
         """
         Retrieve the next_node of The Node
-
         Returns:
             next_node: None or next node.
         """
@@ -51,10 +48,8 @@ class Node:
     def next_node(self, value):
         """
         Set The next_node of the Node.
-
         Args:
             value (Node): The next Node or None.
-
         Raises:
             TypeError: next_node must be a Node object
         """
