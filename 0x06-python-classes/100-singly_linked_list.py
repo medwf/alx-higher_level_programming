@@ -6,10 +6,10 @@ SinglyLinkedList and Node objects.
 
 
 class Node:
-    """  This class allows you to create and manipulate Node objects """
+    """This class allows you to create and manipulate Node objects."""
 
     def __init__(self, data, next_node=None):
-        """ Initialize a new Square
+        """Initialize a new Square
         Args:
             data (int): data for node
             next_node(Node): pointer to None or Node
@@ -24,52 +24,30 @@ class Node:
 
     @data.setter
     def data(self, value):
-        """
-        Set The data of the Node.
-        Args:
-            value (int): The integer of the node.
-        Raises:
-            TypeError: data must be an integer
-        """
         if not isinstance(value, int):
             raise TypeError("data must be an integer")
         self._data = value
 
     @property
     def next_node(self):
-        """
-        Retrieve the next_node of The Node
-        Returns:
-            next_node: None or next node.
-        """
+        """Get or set the next node of the current node."""
         return self._next_node
 
     @next_node.setter
     def next_node(self, value):
-        """
-        Set The next_node of the Node.
-        Args:
-            value (Node): The next Node or None.
-        Raises:
-            TypeError: next_node must be a Node object
-        """
         if value is not None and not isinstance(value, Node):
             raise TypeError("next_node must be a Node object")
         self._next_node = value
 
 
 class SinglyLinkedList:
-    """  This class allows you to create and manipulate SinglyLinkedList objects """
+    """This class allows you to create and manipulate SinglyLinkedList objects."""
 
     def __init__(self):
-        """ Initialize a new SinglyLinkedList
-            Args:
-                head: a pointer to first node
-        """
+        """Initialize a new SinglyLinkedList."""
         self.head = None
 
     def sorted_insert(self, value):
-        """Methode to sorted insert value """
         new_node = Node(value)
         if self.head is None:
             self.head = new_node
@@ -88,7 +66,7 @@ class SinglyLinkedList:
         current.next_node = new_node
 
     def __str__(self):
-        """  method that prints the entire list in stdout, one node number by line. """
+        """method that prints the entire list in stdout, one node number by line."""
         node = self.head
         nodes = []
         while node is not None:
