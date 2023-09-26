@@ -95,6 +95,7 @@ class SinglyLinkedList:
         current.next_node = new_node
 
     def __repr__(self):
+        """  method that prints the entire list in stdout, one node number by line. """
         node = self.head
         nodes = []
         while node is not None:
