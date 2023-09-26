@@ -9,7 +9,7 @@ class Square:
         """ Initialize a new Square
             args:
                 size (int): The size for new Saquare
-                position (tuple) : position of new
+                position (tuple) : position of new square
         """
         self.size = size
         self.position = position
@@ -29,10 +29,10 @@ class Square:
     def size(self, value):
         """ Set new size for Sauare
 
-            args:
+            Args:
                 value (int): The new size for new Square
 
-            raises:
+            Raises:
                 TypeError: size must be an integer
                 ValueError: size must be >= 0
         """
@@ -49,12 +49,12 @@ class Square:
 
     @position.setter
     def position(self, value):
-        """ Set new position for print # 
+        """ Set new position for print #
 
-            args:
+            Args:
                 value (Tuple): The new position for print #
 
-            raises:
+            Raises:
                 TypeError: position must be a tuple of 2 positive integers
         """
         if (not isinstance(value, tuple) or len(value) != 2 or
