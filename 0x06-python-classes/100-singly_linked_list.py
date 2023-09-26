@@ -17,7 +17,7 @@ class Node:
     @property
     def data(self):
         """
-        Retrieve the data of Node
+        Retrieve the data of The Node
 
         Returns:
             int: The data of the node.
@@ -72,7 +72,10 @@ class SinglyLinkedList:
     """  This class allows you to create and manipulate SinglyLinkedList objects """
 
     def __init__(self):
-        """ Initialize a new SinglyLinkedList """
+        """ Initialize a new SinglyLinkedList
+            Args:
+                head: a pointer to first node
+        """
         self.head = None
 
     def sorted_insert(self, value):
