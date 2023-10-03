@@ -18,3 +18,5 @@
     How does Python pass variables to functions
 
 ## Task mandatory
+
+0. Who am I? : What function would you use to get the type of an object?
