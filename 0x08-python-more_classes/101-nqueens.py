@@ -88,7 +88,7 @@ class Queen:
 
     def __str__(self):
         ret = ""
-        for a in range(len(self.solution) - 1, -1, -1):
+        for a in range(len(self.solution)):
             ret += str(self.solution[a]) + "\n"
         return ret[:-1]
 
