@@ -16,9 +16,9 @@ This is an example text file in reStructuredText format. First import
 Traceback (most recent call last):
 TypeError: height must be an integer
 
->>> bg.integer_validator("aboubakr", "Hello")
+>>> bg.integer_validator("hi", "Hello")
 Traceback (most recent call last):
-TypeError: aboubakr must be an integer
+TypeError: hi must be an integer
 
 >>> bg.integer_validator("width", )
 Traceback (most recent call last):
