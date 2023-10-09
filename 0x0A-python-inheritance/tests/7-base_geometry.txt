@@ -35,3 +35,11 @@ ValueError:  must be greater than 0
 >>> bg.integer_validator("", "John")
 Traceback (most recent call last):
 TypeError:  must be an integer
+
+>>> bg.integer_validator(None, "John")
+Traceback (most recent call last):
+TypeError: None must be an integer
+
+>>> bg.integer_validator("None", None)
+Traceback (most recent call last):
+TypeError: None must be an integer
