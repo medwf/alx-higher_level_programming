@@ -42,11 +42,10 @@ def pascal_triangle(n):
     lst = []
     # start loop from 0 to n - 1
     for i in range(n):
-        i2 = i
         _l = []
-        for k in range(i2 + 1):
+        for k in range(i + 1):
             # test print(combinations(i, k))
             _l.append(combinations(i, k))
+        # print("list inside = ", _l)
         lst.append(_l)
-
     return lst
