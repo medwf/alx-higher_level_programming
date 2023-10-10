@@ -12,6 +12,6 @@ def save_to_json_file(my_obj, filename):
         my_obj (str): a json string.
         filename (str): a name of file or path
     """
-    js = json.dumps(my_obj)
     with open(filename, "w", encoding="utf-8") as file:
+        js = json.dumps(my_obj)
         file.write(js)
