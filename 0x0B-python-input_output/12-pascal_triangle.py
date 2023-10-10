@@ -8,11 +8,12 @@ def pascal_triangle(n):
         n (int): The number pascal triangle
     Return: a list od lists of integers
     """
-    # list of lists
-    lst = []
+
     # check if n less or equal 0 return empty list
     if n <= 0:
-        return lst
+        return []
+    # list of lists
+    lst = []
     # start loop from 0 to n - 1
     for i in range(n):
         # i use 11 ** i eash line
