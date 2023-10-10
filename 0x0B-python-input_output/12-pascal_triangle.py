@@ -15,17 +15,17 @@ def fac(n):
         return n * fac(n - 1)
 
 
-def combinations(n, k):
-    """
-    a function calculat combinations for (n, k)
-    Argv:
-        n (int) : items
-        k (int) : itens
-    using this method C(n,k)= n! / k!(n-k)!.
-    Return: int of C(n, k)
-    """
-    a, b, c = fac(n), fac(k), fac(n - k)
-    return int(a / (b * c))
+# def combinations(n, k):
+#     """
+#     a function calculat combinations for (n, k)
+#     Argv:
+#         n (int) : items
+#         k (int) : itens
+#     using this method C(n,k)= n! / k!(n-k)!.
+#     Return: int of C(n, k)
+#     """
+#     a, b, c = fac(n), fac(k), fac(n - k)
+#     return int(a / (b * c))
 
 
 def pascal_triangle(n):
@@ -45,7 +45,7 @@ def pascal_triangle(n):
         _l = []
         for k in range(i + 1):
             # test print(combinations(i, k))
-            _l.append(combinations(i, k))
+            _l.append(int(fac(i) / (fac(k) * fac(i - k))))
         # print("list inside = ", _l)
         lst.append(_l)
     return lst
