@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-"""" 
+""""
 a function that reads stdin line by line and computes metrics
 """
 
@@ -30,7 +30,7 @@ try:
                 FileSize += int(seperater[-1])
                 if sure == number_line:
                     number_line += 1
-            except:
+            except Exception:
                 if sure == number_line:
                     continue
         if number_line % 10 == 0:
