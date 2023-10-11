@@ -30,12 +30,12 @@ try:
                 continue
             number_line += 1
         if number_line % 10 == 0:
-            print("* File size: {:d}".format(FileSize))
+            print("File size: {:d}".format(FileSize))
             for key, val in sorted(status_code.items()):
                 if val:
                     print("{:s}: {:d}".format(key, val))
 except KeyboardInterrupt:
-    print(" *** File size: {:d}".format(FileSize))
+    print("File size: {:d}".format(FileSize))
     for key, val in sorted(status_code.items()):
         if val:
             print("{:s}: {:d}".format(key, val))
