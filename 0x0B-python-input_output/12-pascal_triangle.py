@@ -2,32 +2,6 @@
 """pascal_triange module"""
 
 
-def fac(n):
-    """
-    a funcyion calculate factorial of n
-    Argv:
-        n (int): the number that calculat factorial
-    Return: fac(n)
-    """
-    if n == 0:
-        return 1
-    else:
-        return n * fac(n - 1)
-
-
-def combinations(n, k):
-    """
-    a function calculat combinations for (n, k)
-    Argv:
-        n (int) : items
-        k (int) : itens
-    using this method C(n,k)= n! / k!(n-k)!.
-    Return: int of C(n, k)
-    """
-    a, b, c = fac(n), fac(k), fac(n - k)
-    return int(a / (b * c))
-
-
 def pascal_triangle(n):
     """
     Args:
@@ -38,14 +12,19 @@ def pascal_triangle(n):
     # check if n less or equal 0 return empty list
     if n <= 0:
         return []
-    # list of lists
-    lst = []
-    # start loop from 0 to n - 1
-    for i in range(n):
-        _l = []
-        for k in range(i + 1):
-            # test print(combinations(i, k))
-            _l.append(combinations(i, k))
-        # print("list inside = ", _l)
+    # add [1] at beggining
+    lst = [[1]]
+    while len(lst) != n:
+        # tri == last list in lists
+        tri = lst[-1]
+        # start new list with 1
+        _l = [1]
+        # new element always == two element in last list
+        for i in range(len(tri) - 1):
+            _l.append(tri[i] + tri[i + 1])
+        # end list with 1
+        _l.append(1)
+        # test print _l print("_l = ", _l)
         lst.append(_l)
+        # test print lst print("list = ", lst)
     return lst
