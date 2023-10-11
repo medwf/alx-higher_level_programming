@@ -22,13 +22,17 @@ try:
     for line in sys.stdin:
         seperater = line.split()
         if len(seperater) >= 2:
+            sure = number_line
             if seperater[-2] in status_code:
                 status_code[seperater[-2]] += 1
+                number_line += 1
             try:
                 FileSize += int(seperater[-1])
+                if sure == number_line:
+                    number_line += 1
             except:
-                continue
-            number_line += 1
+                if sure == number_line:
+                    continue
         if number_line % 10 == 0:
             print("File size: {:d}".format(FileSize))
             for key, val in sorted(status_code.items()):
