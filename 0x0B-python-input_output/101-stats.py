@@ -38,6 +38,10 @@ try:
             for key, val in sorted(status_code.items()):
                 if val:
                     print("{:s}: {:d}".format(key, val))
+    print("File size: {:d}".format(FileSize))
+    for key, val in sorted(status_code.items()):
+        if val:
+            print("{:s}: {:d}".format(key, val))
 except KeyboardInterrupt:
     print("File size: {:d}".format(FileSize))
     for key, val in sorted(status_code.items()):
