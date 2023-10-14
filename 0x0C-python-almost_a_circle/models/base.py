@@ -1,5 +1,6 @@
 #!/bin/usr/python3
 """Base module"""
+import json
 
 
 class Base:
@@ -15,3 +16,14 @@ class Base:
         if self.id is None:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
+
+    @staticmethod
+    def to_json_string(list_dictionaries):
+        if list_dictionaries == None or len(list_dictionaries) == 0:
+            return "[]"
+        str_dict = json.dumps(list_dictionaries)
+        return str_dict
+
+    @classmethod
+    def save_to_file(cls, list_objs):
+        

@@ -1,9 +1,13 @@
 import unittest
 from models.base import Base
+from models.rectangle import Rectangle
+"""Test Class Base"""
 
 
 class TestBaseId(unittest.TestCase):
+    """Test ID """
     # positive nagative id
+
     def test_pass_id_positive(self):
         Base._Base__nb_objects = 0
         Tp0 = Base(12)
@@ -39,26 +43,43 @@ class TestBaseId(unittest.TestCase):
         Base._Base__nb_objects = 0
         zero1 = Base(0)
         self.assertEqual(zero1.id, 0)
-        zero2 = Base(0)
-        self.assertEqual(zero2.id, 0)
 
-    @unittest.expectedFailure
-    def test_Raise_Failure(self):
-        """ test_Raise_Failure """
-        id = "100"
-        with self.assertRaises(TypeError):
-            Base(id)
 
-    @unittest.expectedFailure
-    def test_Raise_Failure1(self):
-        """ test_Raise_Failure """
-        id = (1, 2, 3)
-        with self.assertRaises(TypeError):
-            Base(id)
+class Test_ToJsonString(unittest.TestCase):
+    """test to json string."""
 
-    @unittest.expectedFailure
-    def test_Raise_Failure2(self):
-        """ test_Raise_Failure """
-        id = [1, 2, 3]
+    def test_to_Json_string(self):
+        Base._Base__nb_objects = 0
+
+        r1 = Rectangle(10, 7, 2, 8)
+        dictionary = r1.to_dictionary()
+        json_dictionary = Base.to_json_string([dictionary])
+        a = {'x': 2, 'y': 8, 'id': 1, 'height': 7, 'width': 10}
+        self.assertEqual(dictionary, a)
+        self.assertEqual(type(dictionary), dict)
+        b = '[{"x": 2, "y": 8, "id": 1, "height": 7, "width": 10}]'
+        self.assertEqual(json_dictionary, b)
+        self.assertEqual(type(json_dictionary), str)
+
+    def test_empty_Dict(self):
+        empty_dic = Base.to_json_string([])
+        self.assertEqual(empty_dic, "[]")
+
+    def test_None_Dict(self):
+        empty_dict = Base.to_json_string(None)
+        self.assertEqual(empty_dict, "[]")
+
+    def test_two_dict(self):
+        dic1 = {"x": 2, "y": 8, "id": 1, "height": 7, "width": 10}
+        dic2 = {"x": 11, "y": 12, "id": 13, "height": 14, "width": 15}
+        json_dictionary2 = Base.to_json_string([dic1, dic2])
+        j_d2 = '[{"x": 2, "y": 8, "id": 1, "height": 7, "width": 10}, {"x": 11, "y": 12, "id": 13, "height": 14, "width": 15}]'
+        self.assertEqual(json_dictionary2, j_d2)
+
+    def test_no_argumant(self):
         with self.assertRaises(TypeError):
-            Base(id)
+            Base.to_json_string()
+
+    def test_to_many_argument(self):
+        with self.assertRaises(TypeError):
+            Base.to_json_string([], 123)

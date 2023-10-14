@@ -49,13 +49,14 @@ class Test_Square_task_10(TestCase):
 
     def test_to_many_argument(self):
         with self.assertRaises(TypeError):
-            Square(1, 2, 3, 4, 5)
+            Square(1, 2, 4, 5, 6)
 
     def testPassNone(self):
         with self.assertRaises(TypeError):
             Square(None)
 
     def test_getter_setter(self):
+        Base._Base__nb_objects = 0
         t = Square(4)
         self.assertAlmostEqual(t.size, 4)
 
@@ -67,7 +68,7 @@ class Test_Square_task_10(TestCase):
         # cal area pass size
         self.assertAlmostEqual(t.area(), 484)
         # str Square pass size
-        self.assertAlmostEqual(str(t), "[Square] (2) 0/0 - 22")
+        self.assertEqual(str(t), "[Square] (1) 0/0 - 22")
         # get height
         self.assertAlmostEqual(t.height, 22)
         # get width
@@ -169,10 +170,165 @@ class Test_Square_display(TestCase):
 
     def test_display_with_x_y(self):
         with mock.patch('sys.stdout', new=StringIO()) as op:
-            Square(3, 3, 2, 12).display()
+            Square(3, 2, 2).display()
             self.assertEqual(
-                op.getvalue(), "\n\n   ###\n   ###\n   ###\n")
+                op.getvalue(), "\n\n  ###\n  ###\n  ###\n")
 
     def test_display_with_pass_argument(self):
         with self.assertRaises(TypeError):
             Square(3, 0, 2, 12).display(5)
+
+
+class Test_Square_update_args(TestCase):
+    """Test method update."""
+
+    def setUp(self):
+        Base._Base__nb_objects = 0
+
+    def test_no_arg_pass(self):
+        T5 = Square(2, 3, 4, 5)
+        T5.update()
+        self.assertEqual(str(T5), "[Square] (5) 3/4 - 2")
+
+    def test_no_id(self):
+        n = Square(2, 11, 22, 9)
+        n.update(None)
+        self.assertEqual(str(n), "[Square] (1) 11/22 - 2")
+
+    def test_disply_normal(self):
+        r1 = Square(10, 10, 10)
+        with mock.patch('sys.stdout', new=StringIO()) as op:
+            print(r1)
+            self.assertEqual(op.getvalue(), "[Square] (1) 10/10 - 10\n")
+
+        r1.update(89)
+        with mock.patch('sys.stdout', new=StringIO()) as op:
+            print(r1)
+            self.assertEqual(op.getvalue(), "[Square] (89) 10/10 - 10\n")
+
+        r1.update(89, 2)
+        with mock.patch('sys.stdout', new=StringIO()) as op:
+            print(r1)
+            self.assertEqual(op.getvalue(), "[Square] (89) 10/10 - 2\n")
+
+        r1.update(89, 2, 4)
+        with mock.patch('sys.stdout', new=StringIO()) as op:
+            print(r1)
+            self.assertEqual(op.getvalue(), "[Square] (89) 4/10 - 2\n")
+
+        r1.update(89, 2, 4, 5)
+        with mock.patch('sys.stdout', new=StringIO()) as op:
+            print(r1)
+            self.assertEqual(op.getvalue(), "[Square] (89) 4/5 - 2\n")
+
+    def test_too_many_argu_pass(self):
+        T6 = Square(1, 2, 4, 5)
+        T6.update(5, 4, 2, 1, 9)
+        self.assertEqual(str(T6), "[Square] (5) 2/1 - 4")
+
+
+class Test_Square_update_kwargs(TestCase):
+    """Test update public method with kwargs"""
+
+    def test_pass_nothing(self):
+        T9 = Square(2, 0, 0, 11)
+        T9.update()
+        self.assertEqual(str(T9), "[Square] (11) 0/0 - 2")
+
+    def test_pass_id_come_number_and_None(self):
+        T10 = Square(2, 0, 0, 11)
+        T10.update(id=None)
+        self.assertEqual(str(T10), "[Square] (1) 0/0 - 2")
+
+        T11 = Square(2, 0, 0, 11)
+        T11.update(id=66)
+        self.assertEqual(str(T11), "[Square] (66) 0/0 - 2")
+
+        T11 = Square(2, 0, 0, 11)
+        T11.update(id=None)
+        self.assertEqual(str(T11), "[Square] (2) 0/0 - 2")
+
+    def test_pass_id_width(self):
+        T12 = Square(2, 0, 0, 11)
+        T12.update(width=11, id=5)
+        self.assertEqual(str(T12), "[Square] (5) 0/0 - 11")
+
+    def test_pass_id_width_height(self):
+        T12 = Square(2, 0, 0, 11)
+        T12.update(width=11, id=6, height=22)
+        self.assertEqual(str(T12), "[Square] (6) 0/0 - 11")
+
+    def test_pass_width_height_x(self):
+        T12 = Square(2, 0, 0, 11)
+        T12.update(x=3, width=11, id=2, height=22)
+        self.assertEqual(str(T12), "[Square] (2) 3/0 - 11")
+
+    def test_pass_width_height_x_y(self):
+        T12 = Square(2, 0, 0, 11)
+        T12.update(x=3, width=11, y=2, id=9, height=22)
+        self.assertEqual(str(T12), "[Square] (9) 3/2 - 11")
+
+    def test_pass_too_many_arg(self):
+        T12 = Square(1, 0, 0, 1)
+        T12.update(x=2, width=3, y=4, id=5, height=6, test=1000)
+        self.assertEqual(str(T12), "[Square] (5) 2/4 - 3")
+
+    def test_pass_too_many_arg_mixed(self):
+        T12 = Square(1, 0, 0, 1)
+        T12.update(x=2, hj=1002, width=3, y=4,
+                   k=1001, id=5, height=6, test=1000)
+        self.assertEqual(str(T12), "[Square] (5) 2/4 - 3")
+
+    def test_pass_args_and_kwargs(self):
+        T12 = Square(1, 0, 0, 1)
+        T12.update(11, 33, 44, 55, x=2, width=3, y=4, id=5, height=6)
+        self.assertEqual(str(T12), "[Square] (11) 44/55 - 33")
+
+    def test_pass_wrong_key(self):
+        T12 = Square(1, 0, 0, 1)
+        T12.update(test=1000, e=1001, med=1002, x1=1002, y2=1003)
+        self.assertEqual(str(T12), "[Square] (1) 0/0 - 1")
+
+    def test_value_type_error_pass_negative_number(self):
+        r = Square(1, 2, 3, 4)
+        with self.assertRaises(TypeError) as err:
+            r.update(1, [1, 2])
+        self.assertEqual(str(err.exception), "width must be an integer")
+
+        with self.assertRaises(ValueError) as err:
+            r.update(1, -1)
+        self.assertEqual(str(err.exception), "width must be > 0")
+
+        with self.assertRaises(TypeError) as err:
+            r.update(size=(1, 2))
+        self.assertEqual(str(err.exception), "width must be an integer")
+
+        with self.assertRaises(ValueError) as err:
+            r.update(size=-1)
+        self.assertEqual(str(err.exception), "width must be > 0")
+
+
+class Test_Square_to_dictionary(TestCase):
+    """Test dict"""
+
+    def setUp(self):
+        Base._Base__nb_objects = 0
+
+    def test_normalTest(self):
+        r1 = Square(10, 1, 9)
+        self.assertEqual(str(r1), "[Square] (1) 1/9 - 10")
+        r1_dictionary = r1.to_dictionary()
+        shoud_be = "{'x': 1, 'y': 9, 'id': 1, 'size': 10}"
+        self.assertEqual(str(r1_dictionary), shoud_be)
+        self.assertEqual(type(r1_dictionary), dict)
+
+        r2 = Square(1)
+        self.assertEqual(str(r2), "[Square] (2) 0/0 - 1")
+        r2.update(**r1_dictionary)
+        self.assertEqual(str(r2), "[Square] (1) 1/9 - 10")
+        self.assertEqual(r1 == r2, False)
+
+    def test_to_dict_pass_argument(self):
+        r = Square(1, 3, 4, 5)
+        with self.assertRaises(TypeError):
+            r.to_dictionary(11)

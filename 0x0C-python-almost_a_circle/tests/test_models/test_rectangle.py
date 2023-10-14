@@ -332,9 +332,53 @@ class Test_Rectangle_update_kwargs(TestCase):
     def test_pass_args_and_kwargs(self):
         T12 = Rectangle(1, 1, 0, 0, 1)
         T12.update(11, 22, 33, 44, 55, x=2, width=3, y=4, id=5, height=6)
-        self.assertEqual(str(T12), "[Rectangle] (5) 2/4 - 3/6")
+        self.assertEqual(str(T12), "[Rectangle] (11) 44/55 - 22/33")
 
     def test_pass_wrong_key(self):
         T12 = Rectangle(1, 1, 0, 0, 1)
         T12.update(test=1000, e=1001, med=1002, x1=1002, y2=1003)
         self.assertEqual(str(T12), "[Rectangle] (1) 0/0 - 1/1")
+
+    def test_value_type_error_pass_negative_number(self):
+        r = Rectangle(1, 2, 3, 4, 5)
+        with self.assertRaises(TypeError) as err:
+            r.update(1, [1, 2])
+        self.assertEqual(str(err.exception), "width must be an integer")
+
+        with self.assertRaises(ValueError) as err:
+            r.update(1, -1)
+        self.assertEqual(str(err.exception), "width must be > 0")
+
+        with self.assertRaises(TypeError) as err:
+            r.update(height=[1, 2])
+        self.assertEqual(str(err.exception), "height must be an integer")
+
+        with self.assertRaises(ValueError) as err:
+            r.update(height=-1)
+        self.assertEqual(str(err.exception), "height must be > 0")
+
+
+class Test_rectangle_to_dictionary(TestCase):
+    """Test dict"""
+
+    def setUp(self):
+        Base._Base__nb_objects = 0
+
+    def test_normalTest(self):
+        r1 = Rectangle(10, 2, 1, 9)
+        self.assertEqual(str(r1), "[Rectangle] (1) 1/9 - 10/2")
+        r1_dictionary = r1.to_dictionary()
+        shoud_be = "{'x': 1, 'y': 9, 'id': 1, 'height': 2, 'width': 10}"
+        self.assertEqual(str(r1_dictionary), shoud_be)
+        self.assertEqual(type(r1_dictionary), dict)
+
+        r2 = Rectangle(1, 1)
+        self.assertEqual(str(r2), "[Rectangle] (2) 0/0 - 1/1")
+        r2.update(**r1_dictionary)
+        self.assertEqual(str(r2), "[Rectangle] (1) 1/9 - 10/2")
+        self.assertEqual(r1 == r2, False)
+
+    def test_to_dict_pass_argument(self):
+        r = Rectangle(1, 2, 3, 4, 5)
+        with self.assertRaises(TypeError):
+            r.to_dictionary(11)

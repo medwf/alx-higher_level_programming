@@ -36,25 +36,26 @@ class Square(Rectangle):
 
     def update(self, *args, **kwargs):
         """Assign value to attribute using *args"""
+        OrdArgs = ['id', 'size', 'x', 'y']
 
-        if len(args) != 0:
-            if len(args) >= 1:
-                self.id = args[0]
-                super().__init__(self.id)
-            if len(args) >= 2:
-                self.width = args[1]
-            if len(args) >= 3:
-                self.x = args[2]
-            if len(args) >= 4:
-                self.y = args[3]
+        if args:
+            for idx, value in enumerate(args):
+                if value == None:
+                    self.__init__(self.size, self.x, self.y)
+                if value is not None and idx <= 3:
+                    setattr(self, OrdArgs[idx], value)
+        else:
+            for key, value in kwargs.items():
+                if value == None:
+                    self.__init__(self.size, self.x, self.y)
+                else:
+                    setattr(self, key, value)
 
-        for key, value in kwargs.items():
-            if key == "id":
-                self.id = value
-                super().__init__(self.id)
-            if key == 'size':
-                self.width = value
-            if key == "x":
-                self.x = value
-            if key == "y":
-                self.y = value
+    def to_dictionary(self):
+        """Return: a dictionary Representation of a object"""
+        return {
+            'id': self.id,
+            'size': self.width,
+            'x': self.x,
+            'y': self.y
+        }
