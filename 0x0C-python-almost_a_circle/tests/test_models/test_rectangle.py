@@ -1,7 +1,19 @@
-from unittest import TestCase, mock
+#!/bin/usr/python3
+"""import unittest
+import Base from models.base
+import Square from models.square
+import Rectangle from models.rectangle
+import StringIO from io
+import TestCae and mock from unittest
+"""
+
+from models.square import Square
 from models.rectangle import Rectangle
 from models.base import Base
+from unittest import TestCase, mock
+import unittest
 from io import StringIO
+
 """ test my classes Rectangle"""
 
 
@@ -382,3 +394,7 @@ class Test_rectangle_to_dictionary(TestCase):
         r = Rectangle(1, 2, 3, 4, 5)
         with self.assertRaises(TypeError):
             r.to_dictionary(11)
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -1,6 +1,8 @@
 #!/usr/bin/python3
-"""module Rectangle """
+"""import Base from models.base."""
 from models.base import Base
+
+"""module Rectangle """
 
 
 class Rectangle(Base):
@@ -141,7 +143,7 @@ class Rectangle(Base):
 
         if args:
             for idx, value in enumerate(args):
-                if value == None:
+                if idx == 0 and value == None:
                     self.__init__(self.width, self.height, self.x, self.y)
                 if value is not None and idx <= 4:
                     setattr(self, OrdArgs[idx], value)

@@ -10,7 +10,7 @@ if __name__ == "__main__":
     r1.update(None)
     print(r1)
 
-    r1.update(89, 2)
+    r1.update(89, None)
     print(r1)
 
     r1.update(89, 2, 3)
