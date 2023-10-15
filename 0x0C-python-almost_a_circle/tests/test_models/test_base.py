@@ -88,8 +88,10 @@ class Test_Bs_ToJsonString(unittest.TestCase):
         dic1 = {"x": 2, "y": 8, "id": 1, "height": 7, "width": 10}
         dic2 = {"x": 11, "y": 12, "id": 13, "height": 14, "width": 15}
         json_dictionary2 = Base.to_json_string([dic1, dic2])
-        j_d2 = '[{"x": 2, "y": 8, "id": 1, "height": 7, "width": 10}, {"x": 11, "y": 12, "id": 13, "height": 14, "width": 15}]'
-        self.assertEqual(json_dictionary2, j_d2)
+        j_d2 = '[{"x": 2, "y": 8, "id": 1, '
+        j = '"height": 7, "width": 10}, {"x": 11, "y": 12,'
+        k = ' "id": 13, "height": 14, "width": 15}]'
+        self.assertEqual(json_dictionary2, j_d2 + j + k)
 
     def test_no_argumant(self):
         """Test"""
@@ -117,8 +119,9 @@ class Test_Bs_save_to_file(unittest.TestCase):
         with open("Rectangle.json", "r") as file:
             c = file.read()
             self.assertAlmostEqual(len(c), 105)
-            dd = '[{"x": 2, "y": 8, "id": 1, "height": 7, "width": 10}, {"x": 0, "y": 0, "id": 2, "height": 4, "width": 2}]'
-            self.assertEqual(c, dd)
+            dd = '[{"x": 2, "y": 8, "id": 1, "height": 7, "width": 10}'
+            ddd = '{"x": 0, "y": 0, "id": 2, "height": 4, "width": 2}]'
+            self.assertEqual(c, dd + ", " + ddd)
 
         # square only
         s1 = Square(10, 2, 8)
@@ -128,8 +131,8 @@ class Test_Bs_save_to_file(unittest.TestCase):
         with open("Square.json", "r") as file:
             ss = file.read()
             self.assertAlmostEqual(len(ss), 77)
-            ddd = '[{"id": 3, "size": 10, "x": 2, "y": 8}, {"id": 4, "size": 2, "x": 0, "y": 0}]'
-            self.assertEqual(ss, ddd)
+            dddd = '[{"id": 3, "size": 10, "x": 2, "y": 8}, {"id": '
+            self.assertEqual(ss, dddd + '4, "size": 2, "x": 0, "y": 0}]')
 
 
 class Test_Bs_from_json_string(unittest.TestCase):

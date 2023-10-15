@@ -1,6 +1,10 @@
 
-"""import json"""
+"""
 import json
+import csv
+"""
+import json
+import csv
 
 """module Base"""
 
@@ -30,7 +34,7 @@ class Base:
         If list_dictionaries is None or  an empty list return '[]'.
         Overwrite json string.
         """
-        if list_dictionaries == None or len(list_dictionaries) == 0:
+        if list_dictionaries is None or len(list_dictionaries) == 0:
             return "[]"
         str_dict = json.dumps(list_dictionaries)
         return str_dict
@@ -70,7 +74,8 @@ class Base:
     @classmethod
     def create(cls, **dictionary):
         """
-        Create an instance with attributes set based on the provided dictionary.
+        Create an instance with attributes set based on
+            the provided dictionary.
         Args:
             **dictionary: a double pointer to a dictionary
 
@@ -102,3 +107,25 @@ class Base:
                 return _list
         except FileNotFoundError:
             return _list
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """
+        That serializes in CSV.
+
+        Agrs:
+            list_objs (list) : a list of object.
+        """
+        filename = f"{cls.__name__}.csv"
+        with open(filename, "w") as file:
+            writer = csv.writer(file)
+            if list_objs is not None or len(list_objs) > 0:
+                if cls.__name__ is "Rectangle":
+                    fields = ['id', 'width', 'height', 'x', 'y']
+                elif cls.__name__ is "Square":
+                    fields = ['id', 'size', 'x', 'y']
+                writer = csv.DictWriter(file, fieldnames=fields)
+                for obj in list_objs:
+                    writer.writerow(obj.to_dictionary())
+            else:
+                file.write('[]')

@@ -33,7 +33,8 @@ class Square(Rectangle):
 
     def __str__(self):
         """return string"""
-        return "[Square] ({:d}) {:d}/{:d} - {:d}".format(self.id, self.x, self.y, self.width)
+        return "[Square] ({:d}) {:d}/{:d} - {:d}"\
+            .format(self.id, self.x, self.y, self.width)
 
     def update(self, *args, **kwargs):
         """Assign value to attribute using *args"""
@@ -41,13 +42,13 @@ class Square(Rectangle):
 
         if args:
             for idx, value in enumerate(args):
-                if value == None:
+                if value is None:
                     self.__init__(self.size, self.x, self.y)
                 if value is not None and idx <= 3:
                     setattr(self, OrdArgs[idx], value)
         else:
             for key, value in kwargs.items():
-                if value == None:
+                if value is None:
                     self.__init__(self.size, self.x, self.y)
                 else:
                     setattr(self, key, value)

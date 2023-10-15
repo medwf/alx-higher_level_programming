@@ -121,7 +121,8 @@ class Test_Square_values_Type_Error(TestCase):
         """Test"""
         for T in self.No_valide_types:
             with self.subTest(T=T):
-                with self.assertRaisesRegex(TypeError, "width must be an integer"):
+                with self.assertRaisesRegex(TypeError,
+                                            "width must be an integer"):
                     Square(T)
 
     def test_x_not_int(self):

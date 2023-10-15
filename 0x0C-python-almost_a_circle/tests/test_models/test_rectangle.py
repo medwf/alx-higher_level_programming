@@ -109,13 +109,15 @@ class Test_Rectangle_task_3(TestCase):
     def test_width_not_int(self):
         for T in self.No_valide_types:
             with self.subTest(T=T):
-                with self.assertRaisesRegex(TypeError, "width must be an integer"):
+                with self.assertRaisesRegex(TypeError,
+                                            "width must be an integer"):
                     Rectangle(T, 4)
 
     def test_height_not_int(self):
         for T in self.No_valide_types:
             with self.subTest(T=T):
-                with self.assertRaisesRegex(TypeError, "height must be an integer"):
+                with self.assertRaisesRegex(TypeError,
+                                            "height must be an integer"):
                     Rectangle(6, T)
 
     def test_x_not_int(self):

@@ -119,12 +119,12 @@ class Rectangle(Base):
 
     def area(self):
         """area : public method.
-            Return: The Area value of The Rectangle. 
+            Return: The Area value of The Rectangle.
         """
         return self.__width * self.__height
 
     def display(self):
-        """display: public method 
+        """display: public method
             print in stdout The Rectangle instance with
             the charcters #.
         """
@@ -135,7 +135,8 @@ class Rectangle(Base):
 
     def __str__(self):
         """Return string."""
-        return "[Rectangle] ({:d}) {:d}/{:d} - {:d}/{:d}".format(self.id, self.__x, self.__y, self.__width, self.__height)
+        return "[Rectangle] ({:d}) {:d}/{:d} - {:d}/{:d}"\
+            .format(self.id, self.__x, self.__y, self.__width, self.__height)
 
     def update(self, *args, **kwargs):
         """Assign value to attribute using *args"""
@@ -143,13 +144,13 @@ class Rectangle(Base):
 
         if args:
             for idx, value in enumerate(args):
-                if idx == 0 and value == None:
+                if idx is 0 and value is None:
                     self.__init__(self.width, self.height, self.x, self.y)
                 if value is not None and idx <= 4:
                     setattr(self, OrdArgs[idx], value)
         else:
             for key, value in kwargs.items():
-                if value == None:
+                if value is None:
                     self.__init__(self.width, self.height, self.x, self.y)
                 else:
                     setattr(self, key, value)
