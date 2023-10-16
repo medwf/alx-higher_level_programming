@@ -1,4 +1,4 @@
-#!/bin/usr/python3
+#!/usr/bin/python3
 """import unittest
 import Base from models.base
 import Square from models.square
@@ -133,6 +133,14 @@ class Test_Bs_save_to_file(unittest.TestCase):
             self.assertAlmostEqual(len(ss), 77)
             dddd = '[{"id": 3, "size": 10, "x": 2, "y": 8}, {"id": '
             self.assertEqual(ss, dddd + '4, "size": 2, "x": 0, "y": 0}]')
+
+    def test_None(self):
+        Rectangle.save_to_file(None)
+
+        with open("Rectangle.json", "r") as file:
+            c = file.read()
+            self.assertAlmostEqual(len(c), 2)
+            self.assertEqual(c, '[]')
 
 
 class Test_Bs_from_json_string(unittest.TestCase):
