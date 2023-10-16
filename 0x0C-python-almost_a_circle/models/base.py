@@ -141,8 +141,8 @@ class Base:
                 elif cls.__name__ is "Square":
                     fields = ['id', 'size', 'x', 'y']
                 reader = csv.DictReader(file, fieldnames=fields)
-                dcts = [dict([k, int(v)] for k, v in l.items())
-                        for l in reader]
+                dcts = [dict([k, int(v)] for k, v in _l.items())
+                        for _l in reader]
                 return [cls.create(**dct) for dct in dcts]
         except FileNotFoundError:
             return []
