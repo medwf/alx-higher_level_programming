@@ -142,6 +142,14 @@ class Test_Bs_save_to_file(unittest.TestCase):
             self.assertAlmostEqual(len(c), 2)
             self.assertEqual(c, '[]')
 
+    def test_empty_list(self):
+        Rectangle.save_to_file([])
+
+        with open("Rectangle.json", "r") as file:
+            c = file.read()
+            self.assertAlmostEqual(len(c), 2)
+            self.assertEqual(c, '[]')
+
 
 class Test_Bs_from_json_string(unittest.TestCase):
     """Test from_json_string"""
