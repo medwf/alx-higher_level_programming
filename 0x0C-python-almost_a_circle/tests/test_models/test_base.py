@@ -270,10 +270,13 @@ class Test_Bs_load_from_file(unittest.TestCase):
 
     def test_No_file(self):
         """Test"""
-        r = []
-        Rectangle.save_to_file(r)
+        Rectangle.save_to_file([])
         lst = Rectangle.load_from_file()
         self.assertEqual(lst, [])
+
+        Square.save_to_file([])
+        lt = Square.load_from_file()
+        self.assertEqual(lt, [])
 
     def test_too_many_args(self):
         """Test"""
