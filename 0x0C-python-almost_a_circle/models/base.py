@@ -130,3 +130,19 @@ class Base:
                     writer.writerow(obj.to_dictionary())
             else:
                 file.write('[]')
+
+    @classmethod
+    def load_from_file_csv(cls):
+        filename = f"{cls.__name__}.csv"
+        try:
+            with open(filename, 'r') as file:
+                if cls.__name__ is "Rectangle":
+                    fields = ['id', 'width', 'height', 'x', 'y']
+                elif cls.__name__ is "Square":
+                    fields = ['id', 'size', 'x', 'y']
+                reader = csv.DictReader(file, fieldnames=fields)
+                dcts = [dict([k, int(v)] for k, v in l.items())
+                        for l in reader]
+                return [cls.create(**dct) for dct in dcts]
+        except FileNotFoundError:
+            return []
