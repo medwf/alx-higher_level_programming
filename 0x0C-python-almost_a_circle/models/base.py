@@ -1,4 +1,4 @@
-
+#!/usr/bin/python3
 """
 import json
 import csv
@@ -18,8 +18,9 @@ class Base:
         Args:
             id (int): The ident of The Base
         """
-        self.id = id
-        if self.id is None:
+        if id is not None:
+            self.id = id
+        else:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
 
