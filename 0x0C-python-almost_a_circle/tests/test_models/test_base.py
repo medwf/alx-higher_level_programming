@@ -142,6 +142,13 @@ class Test_Bs_save_to_file(unittest.TestCase):
             self.assertAlmostEqual(len(c), 2)
             self.assertEqual(c, '[]')
 
+        Square.save_to_file(None)
+
+        with open("Rectangle.json", "r") as file:
+            s = file.read()
+            self.assertAlmostEqual(len(s), 2)
+            self.assertEqual(s, '[]')
+
     def test_empty_list(self):
         Rectangle.save_to_file([])
 
@@ -149,6 +156,13 @@ class Test_Bs_save_to_file(unittest.TestCase):
             c = file.read()
             self.assertAlmostEqual(len(c), 2)
             self.assertEqual(c, '[]')
+
+        Square.save_to_file([])
+
+        with open("Rectangle.json", "r") as file:
+            ss = file.read()
+            self.assertAlmostEqual(len(ss), 2)
+            self.assertEqual(ss, '[]')
 
 
 class Test_Bs_from_json_string(unittest.TestCase):
