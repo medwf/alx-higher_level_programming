@@ -144,7 +144,7 @@ class Test_Bs_save_to_file(unittest.TestCase):
 
         Square.save_to_file(None)
 
-        with open("Rectangle.json", "r") as file:
+        with open("Square.json", "r") as file:
             s = file.read()
             self.assertAlmostEqual(len(s), 2)
             self.assertEqual(s, '[]')
@@ -159,7 +159,7 @@ class Test_Bs_save_to_file(unittest.TestCase):
 
         Square.save_to_file([])
 
-        with open("Rectangle.json", "r") as file:
+        with open("Square.json", "r") as file:
             ss = file.read()
             self.assertAlmostEqual(len(ss), 2)
             self.assertEqual(ss, '[]')
