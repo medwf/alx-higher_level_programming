@@ -14,3 +14,5 @@
 9. 0x0A-python-inheritance
 10. 0x0B-python-input_output
 11. 0x0C. Python - Almost a circle
+12. 0x0D-SQL_introduction
+13. 0x0E-SQL_more_queries
