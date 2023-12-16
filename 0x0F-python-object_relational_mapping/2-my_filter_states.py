@@ -17,8 +17,9 @@ if __name__ == "__main__":
 
     cur = connected.cursor()
     cur.execute(
-        "SELECT * FROM states WHERE \
-        name='{:s}' ORDER BY id ASC".format(value))
+        "SELECT * FROM states \
+        WHERE name LIKE BINARY '{}' \
+        ORDER BY id ASC".format(value))
     rows = cur.fetchall()
     for row in rows:
         print(row)
