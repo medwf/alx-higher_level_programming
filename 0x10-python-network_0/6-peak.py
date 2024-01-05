@@ -4,7 +4,7 @@
 
 def find_peak(list_of_integers):
     """function that finds a peak in a list of unsorted integers.
-        i use binary search algorithm, recursive. 
+        i use binary search algorithm, recursive.
     """
     if not list_of_integers:
         return None
