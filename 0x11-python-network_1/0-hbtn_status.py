@@ -10,4 +10,4 @@ if __name__ == "__main__":
             print('Body response:')
             print('    - type: {}'.format(type(content_bytes)))
             print('    - content: {}'.format(content_bytes))
-            print('    - uft8 content: {}'.format(content))
+            print('    - utf8 content: {}'.format(content))
