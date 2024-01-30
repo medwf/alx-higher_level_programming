@@ -9,5 +9,5 @@ if (process.argv.length > 1) {
       return;
     }
     console.log(data);
-  })
+  });
 }
